@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Balatoni Dávid (balcsida) -- Coding, design -- balcsida
+
+# THANKS
+
+    sliceoflifer for his amasing MyAnimeList Unofficial API!
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3, PHP, JSON, XML
+    jQuery, Modernizr
