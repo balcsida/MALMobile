@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 /*---Minify HTML---*/
 function sanitize_output($buffer) {
 	$search  = array(
@@ -20,6 +21,8 @@ $time  = microtime();
 $time  = explode(' ', $time);
 $time  = $time[1] + $time[0];
 $start = $time;
+
+$thisPage = basename($_SERVER['SCRIPT_FILENAME']);
 
 $animeValues = array(
 	"watching",

@@ -31,9 +31,9 @@
 <a class="brand" href="index.php">MAL Mobile</a>
 <div class="nav-collapse collapse" id="main-menu">
 <ul class="nav">
-<li <?php echo (basename($_SERVER['SCRIPT_FILENAME'])=='index.php'? 'class="active"':'');?>><a href="index.php"><i class="icon-home"></i> Home</a></li>
-<li <?php echo (basename($_SERVER['SCRIPT_FILENAME'])=='animelist.php'? 'class="active"':'');?>><a href="animelist.php?username=<?php if (isLoggedIn()) echo $_COOKIE["username"]; ?>"><i class="icon-film"></i> Anime</a></li>
-<li <?php echo (basename($_SERVER['SCRIPT_FILENAME'])=='mangalist.php'? 'class="active"':'');?>><a href="mangalist.php?username=<?php if (isLoggedIn()) echo $_COOKIE["username"]; ?>"><i class="icon-book"></i> Manga</a></li>
+<li <?php echo ($thisPage=='index.php'? 'class="active"':'');?>><a href="index.php"><i class="icon-home"></i> Home</a></li>
+<li <?php echo (($thisPage=='animelist.php')||($thisPage=='anime.php')? 'class="active"':'');?>><a href="animelist.php?username=<?php if (isLoggedIn()) echo $_COOKIE["username"]; ?>"><i class="icon-film"></i> Anime</a></li>
+<li <?php echo (($thisPage=='mangalist.php')||($thisPage=='manga.php')? 'class="active"':'');?>><a href="mangalist.php?username=<?php if (isLoggedIn()) echo $_COOKIE["username"]; ?>"><i class="icon-book"></i> Manga</a></li>
 </ul>
 <form class="navbar-search pull-right" action="search.php" method="post">
 <input type="text" class="search-query" name="query" placeholder="Search">
@@ -47,7 +47,7 @@
 </a>
 <ul class="dropdown-menu">
 <li><a href="profile.php?username=<?php echo $_COOKIE["username"]; ?>">Profile</a></li>
-<li><a href="#">Log out</a></li>
+<li><a href="login.php?logout">Log out</a></li>
 </ul>
 <?php } else { ?>
 <form class="navbar-form pull-right" action="login.php" method="post">

@@ -14,9 +14,9 @@ echo 'Generated under '.$total_time.' sec';
 ?>
 </div>
 <div class="span4 text-right" id="footer-links">
-<a href="pin.html">Pin to start!</a>
-<a href="changelog.php">Changelog</a>
-<a href="about.php">About</a>
+<a href="pin.html">Pin to start!</a> 
+<a href="changelog.php">Changelog</a> 
+<a href="about.php">About</a> 
 </div>
 </div>
 </footer>

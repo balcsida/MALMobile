@@ -17,72 +17,60 @@ if (!is_string($data)){
 <img src="<?php echo $data["image_url"]; ?>" class="img-polaroid" alt="cover"><br>
 <a href="http://myanimelist.net/anime/<?php echo $data["id"]; ?>">Original MAL page<i class="icon-share"></i></a>
 </div>
-<div class="span9 tabbable">
-<ul class="nav nav-tabs">
-<?php if (isLoggedIn()) { ?><li class="active"><a href="#status" data-toggle="tab">Status</a></li><?php }; ?>
-<li<?php if (!isLoggedIn()) echo ' class="active"';?>><a href="#synopsis" data-toggle="tab">Synopsis</a></li>
-<li><a href="#info" data-toggle="tab">Info</a></li>
-<li><a href="#popularity" data-toggle="tab">Popularity</a></li>
-</ul>
-<div class="tab-content">
 <?php if (isLoggedIn()){ ?>
-<div class="tab-pane active" id="status">
-<?php 
+<div class="span9">
+<?php
 switch ($data["watched_status"]) {
 case null:
 ?>
 <a href="http://myanimelist.net/anime/<?php echo $_GET["id"]; ?>" class="btn btn-block btn-small"><i class="icon-plus"></i>Add</a>
 <?php
+// IF WATCHING
 break;
 case "watching":
 ?>
-<div class="progress">
-<div class="bar bar-primary" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;">
-<?php echo $data["watched_episodes"]."/".$data["episodes"]; ?>
-</div>
-</div>
+<div class="progress"><div class="bar bar-primary" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
 <?php
+// IF COMPLETED
 break;
 case "completed":
 ?>
-<div class="progress">
-<div class="bar bar-success" style="width:100%">
-<?php echo $data["watched_episodes"]."/".$data["episodes"]; ?>
-</div>
-</div>
+<div class="progress"><div class="bar bar-success" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
 <?php
+// IF ON-HOLD
 break;
 case "on-hold":
 ?>
-<div class="progress">
-<div class="bar bar-warning" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;">
-<?php echo $data["watched_episodes"]."/".$data["episodes"]; ?>
-</div>
-</div>
+<div class="progress"><div class="bar bar-warning" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
 <?php
+//IF DROPPED
 break;
 case "dropped":
 ?>
-<div class="progress">
-<div class="bar bar-danger" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;">
-<?php echo $data["watched_episodes"]."/".$data["episodes"]; ?>
-</div>
-</div>
+<div class="progress"><div class="bar bar-danger" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
 <?php
+//IF PLAN TO WATCH
 break;
 case "plan to watch":
 ?>
-<i class="icon-calendar"></i>Plan to Watch
+<i class="icon-calendar"></i> Plan to Watch
 <?php
 break;
 }
 ?>
 </div>
 <?php } ?>
-<div class="tab-pane<?php if (!isLoggedIn()) echo " active";?>" id="synopsis">
+<div class="span9 tabbable">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#synopsis" data-toggle="tab">Synopsis</a></li>
+<li><a href="#info" data-toggle="tab">Info</a></li>
+<li><a href="#popularity" data-toggle="tab">Popularity</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="synopsis">
 <h2>Synopsis</h2>
-   <p><?php echo $data["synopsis"]; ?></p>
-   </div>
+<p><?php echo $data["synopsis"]; ?></p>
+</div>
 <div class="tab-pane" id="info">
 <table class="table table-striped table-hover table-condensed">
 <tr>
@@ -101,7 +89,7 @@ break;
 <th>Episodes</th>
 <td><?php echo $data["episodes"]; ?></td>
 </tr>
-  </table>
+</table>
 </div>
 <div class="tab-pane" id="popularity">
 <table class="table table-striped table-hover table-condensed">
@@ -125,7 +113,7 @@ break;
 <th>Favorited Count</th>
 <td><?php echo $data["favorited_count"]; ?></td>
 </tr>
-  </table>
+</table>
 </div>
 </div>
 </div>
