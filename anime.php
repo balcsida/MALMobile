@@ -15,51 +15,70 @@ if (!is_string($data)){
 <div class="row">
 <div class="span3 text-center">
 <img src="<?php echo $data["image_url"]; ?>" class="img-polaroid" alt="cover"><br>
-<a href="http://myanimelist.net/anime/<?php echo $data["id"]; ?>">Original MAL page<i class="icon-share"></i></a>
+<a href="http://myanimelist.net/anime/<?php echo $data["id"]; ?>">Original MAL page <i class="icon-share"></i></a>
 </div>
-<?php if (isLoggedIn()){ ?>
-<div class="span9">
-<?php
+<div class="span3">
+<?php if (isLoggedIn()){
+$percent=(($data["watched_episodes"])/($data["episodes"]))*100;
+$text = $data["watched_episodes"]."/".$data["episodes"];
 switch ($data["watched_status"]) {
 case null:
 ?>
-<a href="http://myanimelist.net/anime/<?php echo $_GET["id"]; ?>" class="btn btn-block btn-small"><i class="icon-plus"></i>Add</a>
+<form method="ADD" action="http://mal-api.com/animelist/anime" class="form-horizontal">
+<input type="hidden" name="anime_id" value="<?php echo $data["id"]; ?>">
+<fieldset>
+<legend>Add anime</legend>
+<div class="control-group">
+<label class="control-label" for="status">Status</label>
+<div class="controls">
+<select name="status" id="status">
+<option value="plantowatch">Plan to Watch</option>
+<option value="watching">Watching</option>
+<option value="completed">Completed</option>
+<option value="dropped">Dropped</option>
+<option value="onhold">On-Hold</option>
+</select>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="select">Watched episodes</label>
+<div class="controls">
+<div class="input-append">
+<input type="text">
+<span class="add-on">/<?php echo $data["episodes"];?></span>
+</div>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="score">Rating</label>
+<div class="controls">
+<?php include 'inc/rate.php'; ?>
+</div>
+</div>
+<button type="submit" class="btn"><i class="icon-plus"></i> Add</button>
+</fieldset>
+</form>
 <?php
-// IF WATCHING
 break;
 case "watching":
-?>
-<div class="progress"><div class="bar bar-primary" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
-<?php
-// IF COMPLETED
+progressBar($percent,$text);
 break;
 case "completed":
-?>
-<div class="progress"><div class="bar bar-success" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
-<?php
-// IF ON-HOLD
+progressBar($percent,$text,"success");
 break;
 case "on-hold":
-?>
-<div class="progress"><div class="bar bar-warning" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
-<?php
-//IF DROPPED
+progressBar($percent,$text,"warning");
 break;
 case "dropped":
-?>
-<div class="progress"><div class="bar bar-danger" style="width:<?php echo (($data["watched_episodes"])/($data["episodes"]))*100; ?>%;"><?php echo $data["watched_episodes"]."/".$data["episodes"]; ?></div></div>
-<?php
-//IF PLAN TO WATCH
+progressBar($percent,$text,"danger");
 break;
 case "plan to watch":
 ?>
 <i class="icon-calendar"></i> Plan to Watch
 <?php
 break;
-}
-?>
+}} ?>
 </div>
-<?php } ?>
 <div class="span9 tabbable">
 <ul class="nav nav-tabs">
 <li class="active"><a href="#synopsis" data-toggle="tab">Synopsis</a></li>
@@ -68,7 +87,6 @@ break;
 </ul>
 <div class="tab-content">
 <div class="tab-pane active" id="synopsis">
-<h2>Synopsis</h2>
 <p><?php echo $data["synopsis"]; ?></p>
 </div>
 <div class="tab-pane" id="info">

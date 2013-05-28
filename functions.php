@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 /*---Minify HTML---*/
-function sanitize_output($buffer) {
+/*function sanitize_output($buffer) {
 	$search  = array(
 		'/\>[^\S ]+/s', //strip whitespaces after tags, except space
 		'/[^\S ]+\</s', //strip whitespaces before tags, except space
@@ -15,7 +15,7 @@ function sanitize_output($buffer) {
 	$buffer  = preg_replace($search, $replace, $buffer);
 	return $buffer;
 }
-ob_start("sanitize_output");
+ob_start("sanitize_output");*/
 //measure generating time
 $time  = microtime();
 $time  = explode(' ', $time);
@@ -98,6 +98,9 @@ function isLoggedIn() {
 }
 function printAlert($type, $text) {
 	echo '<div class="alert alert-' . $type . '"><strong>' . strtoupper($type) . '</strong> ' . $text . '</div>';
+}
+function progressBar($percent, $text, $type = "primary"){
+	echo '<div class="progress"><div class="bar bar-'.$type.'" style="width:'.$percent.'%;">'.$text.'</div></div>';
 }
 function search($forwhat, $query) {
 	return fetchJson("http://mal-api.com/" . $forwhat . "/search?q=" . $query);

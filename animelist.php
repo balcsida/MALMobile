@@ -5,11 +5,6 @@ if(isset($_GET["username"]) && $_GET["username"]!=""){
 $data=getData("animelist",$_GET["username"]);
 if (!is_string($data)){
 ?>
-<!--PRELOAD COVERS-->
-<?php for($x=0;$x<count($data["anime"]);$x++){ ?>
-<img class="preload" src="<?php echo $data["anime"][$x]["image_url"]; ?>" alt="">
-<?php } ?>
-<!--/PRELOAD COVERS-->
 <div class="page-header">
 <h1><?php echo $_GET["username"]; ?> <small>Anime List</small></h1>
 </div>
@@ -52,7 +47,7 @@ for($x=0;$x<count($data["anime"]);$x++){
 if ($data["anime"][$x]["watched_status"]==$animeValues[$a]) {
 ?>
 <tr>
-<td><a href="anime.php?id=<?php echo $data["anime"][$x]["id"]; ?>" data-type="popover" data-img="<?php echo $data["anime"][$x]["image_url"]; ?>"><?php echo $data["anime"][$x]["title"]; ?></a></td>
+<td><a href="anime.php?id=<?php echo $data["anime"][$x]["id"]; ?>" class="tip" data-img="<?php echo $data["anime"][$x]["image_url"]; ?>"><?php echo $data["anime"][$x]["title"]; ?></a></td>
 <td class="ctc"><?php echo $data["anime"][$x]["score"]; ?></td>
 <td class="ctc"><?php echo $data["anime"][$x]["type"]; ?></td>
 <td class="ctc"><?php echo $data["anime"][$x]["watched_episodes"]; ?>/<?php echo $data["anime"][$x]["episodes"]; ?></td>
