@@ -1,6 +1,6 @@
 <?php
-include("functions.php");
-include('header.php');
+include 'inc/functions.php';
+include 'inc/header.php';
 ?>
 <div class="row">
 <div class="span9">
@@ -28,4 +28,4 @@ if (($item->get_title())!="") {
 <p><a class="btn" href="#">View details &raquo;</a></p>
 </div>
 </div>
-<?php include('footer.php') ?>
+<?php include 'inc/footer.php'; ?>

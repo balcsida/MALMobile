@@ -1,6 +1,6 @@
 <?php
-include("functions.php");
-include("header.php");
+include 'inc/functions.php';
+include 'inc/header.php';
 if(isset($_GET["id"]) && $_GET["id"]!=""){
 if (isLoggedIn()) {
 $data=getDataAuth("anime",$_GET["id"]);
@@ -24,7 +24,7 @@ $text = $data["watched_episodes"]."/".$data["episodes"];
 switch ($data["watched_status"]) {
 case null:
 ?>
-<form method="ADD" action="http://mal-api.com/animelist/anime" class="form-horizontal">
+<form method="POST" action="http://mal-api.com/animelist/anime" class="form-horizontal">
 <input type="hidden" name="anime_id" value="<?php echo $data["id"]; ?>">
 <fieldset>
 <legend>Add anime</legend>
@@ -52,7 +52,7 @@ case null:
 <div class="control-group">
 <label class="control-label" for="score">Rating</label>
 <div class="controls">
-<?php include 'inc/rate.php'; ?>
+<?php include 'inc/inc/rate.php'; ?>
 </div>
 </div>
 <button type="submit" class="btn"><i class="icon-plus"></i> Add</button>
@@ -147,5 +147,5 @@ break;
 } else {
 printAlert("error","No ID given!");
 }
-include('footer.php');
+include 'inc/footer.php';
 ?>

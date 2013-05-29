@@ -7,7 +7,7 @@
 
 # THANKS
 
-    sliceoflifer for his amasing MyAnimeList Unofficial API!
+    sliceoflifer for his amazing MyAnimeList Unofficial API!
 
 # TECHNOLOGY COLOPHON
 

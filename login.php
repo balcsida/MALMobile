@@ -1,5 +1,5 @@
 <?php
-include("functions.php");
+include 'inc/functions.php';
 $somethingWritten = (((isset($_POST["user"]) && isset($_POST["pass"]) && isset($_POST["log-in"])) && ($_POST["user"] != "" && $_POST["pass"] != "")) || isset($_GET["logout"]));
 if ($somethingWritten) {
     if (http_auth_get("http://myanimelist.net/api/account/verify_credentials.xml", $_POST["user"], $_POST["pass"]) != "null") {
@@ -8,18 +8,18 @@ if ($somethingWritten) {
         setcookie("password", encryptPass($_POST["pass"], $salt), $expire);
         header("Location: profile.php?username=" . $_POST["user"]);
     } else {
-        include("header.php");
+        include 'inc/header.php';
         printAlert("error", "Wrong username or password!");
-        include("footer.php");
+        include 'inc/footer.php';
     }
 }
 if (isset($_GET["logout"])) {
     setcookie("username", "", time() - 3600);
     setcookie("password", "", time() - 3600);
-    header("Location: index.php");
+    header("Location: index.php';
 } elseif (!$somethingWritten) {
-    include("header.php");
+    include 'inc/header.php';
     printAlert("error", "You left some fields blank!");
-    include("footer.php");
+    include 'inc/footer.php';
 }
 ?>

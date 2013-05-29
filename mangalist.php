@@ -1,6 +1,6 @@
 <?php
-include("functions.php");
-include("header.php");
+include 'inc/functions.php';
+include 'inc/header.php';
 if(isset($_GET["username"]) && $_GET["username"]!=""){
 $data=getData("mangalist",$_GET["username"]);
 if (!is_string($data)){
@@ -52,5 +52,5 @@ break;
 } else {
 printAlert("info","This feature will be implemented later! Please login first!");
 }
-include('footer.php');
+include 'inc/footer.php';
 ?>

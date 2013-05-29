@@ -1,6 +1,6 @@
 <?php
-include("functions.php");
-include("header.php");
+include 'inc/functions.php';
+include 'inc/header.php';
 if(isset($_GET["id"]) && $_GET["id"]!=""){
 if (isLoggedIn()) {
 $data=getDataAuth("manga",$_GET["id"]);
@@ -141,5 +141,5 @@ break;
 } else {
 printAlert("error","No ID given!");
 }
-include('footer.php');
+include 'inc/footer.php';
 ?>

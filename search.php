@@ -1,6 +1,6 @@
 <?php
-include("functions.php");
-include('header.php');
+include 'inc/functions.php';
+include 'inc/header.php';
 if(isset($_POST["query"]) && $_POST["query"]!=""){
 $resultsAnime = search("anime",$_POST["query"]);
 ?>
@@ -26,5 +26,5 @@ $resultsAnime = search("anime",$_POST["query"]);
 <?php } else { 
 printAlert("error","You left the search field blank!");
 }
-include('footer.php');
+include 'inc/footer.php';
 ?>

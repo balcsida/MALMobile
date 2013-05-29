@@ -1,6 +1,6 @@
 <?php
-include("functions.php");
-include("header.php");
+include 'inc/functions.php';
+include 'inc/header.php';
 if(isset($_GET["username"]) && $_GET["username"]!=""){
 $data=getData("profile",$_GET["username"]);
 if (!is_string($data)){
@@ -173,5 +173,5 @@ break;
 } else {
 printAlert("error","No username given!");
 }
-include("footer.php")
+include 'inc/footer.php';
 ?>
